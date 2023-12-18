@@ -1,0 +1,134 @@
+<html>
+<head>
+<style>
+	.sectionLeft {
+			float: left;
+			width: 80%;
+	}
+	.sectionRight {
+		float: right;
+		width: 20%;
+	}
+	.scoreContainer {
+		background-color: rgb(251,235,123, 0.6);
+		width: 50%;
+		padding: 10px; 
+		border-radius: 20px;
+		font-size: 24px;
+		font-weight: bold;
+	}
+	.clickerContainer img {
+		position: relative;
+		transition: all .2s ease-in-out;
+	}
+	.clickerContainer img:hover { transform: scale(1.10); }
+	.clickerContainer img:active { transform: scale(0.99);}
+
+	.shopButton {
+		background-color: rgb(251,235,123, 0.6);
+		border-radius: 20px;
+		padding: 10px;
+	}
+</style>
+</head>
+<body>
+	<title>Newgrounds Clicker</title>
+	<div class="sectionLeft">
+	<center>
+		<img src="file:///home/chronos/u-077aec3d7d3a5062fda2906164a35d6679d5a331/MyFiles/Downloads/Untitled__1_-removebg-preview.png">
+	<h5 onclick="addToScore(100000000000)">Programmed by DruwTheTacoGuy<br>Designed by Amplicomics<br>Music By [PLACEHOLDER]</h5>
+	</center>
+</div>
+	<style>
+	
+
+		body {
+		  background-image: url('https://art.ngfiles.com/images/6000/6976_nerdvanastudios_acme-background.jpg?f1245447217');
+		  background-repeat: no-repeat;
+		  background-attachment: fixed; 
+		  background-size: 100% 100%;
+		}
+		</style>
+	<div class="sectionLeft">
+		<center>
+		<div class="scoreContainer">
+	<span id ="score">0</span> Casualties<br>
+
+	<span id ="scorepersecond">0</span> Casualties Per Second
+		
+		</div>
+		<br>
+		<div class="clickerContainer">
+	<img src="https://static.wikia.nocookie.net/mcleodgaming/images/f/f2/Newgrounds_Tank.png/revision/latest/thumbnail/width/360/height/450?cb=20201118212104" 
+	onclick="addToScore(1)">
+	</div>
+		</center>
+	</div>
+
+	<div class="sectionRight">
+<table class="shopButton" onclick="buyTankman">
+<tr>
+<td id="image"><img src="https://static.wikia.nocookie.net/tankmen/images/f/f2/Captain_Full_Body.png/revision/latest?cb=20210516210756" width="90"</td>
+<td id="NameAndCost">
+	<p>Tankmen Soldiers</p>
+	<p><span id="tankmancost">15</span> Casualties</p>
+</td>
+<td id="amount"><span id="tankmen">0</span></td>
+</tr>
+</table>
+
+	</div>
+	
+	<script>
+var score = 0;
+
+var tankmanCost = 15;
+var tankmen = 0;
+
+var hominidCost = 100;
+var hominids = 0;
+
+function buyTankman() {
+	if (score >= tankmanCost) {
+		score = score - tankmanCost;
+		tankmen = tankmen + 1;
+		tankmanCost = Math.round(tankmanCost * 1.15);
+
+		document.getElementById("score").innerHTML = score;
+		document.getElementById("tankmancost").innerHTML = tankmanCost;
+		document.getElementById("tankmen").innerHTML = tankmen;
+		UpdateSPS();
+	}
+}
+
+function buyHominid() {
+	if (score >= hominidCost) {
+		score = score - hominidCost;
+		hominids = hominids + 1;
+		hominidCost = Math.round(hominidCost * 1.15);
+
+		document.getElementById("score").innerHTML = score;
+		document.getElementById("hominidcost").innerHTML = hominidCost;
+		document.getElementById("hominids").innerHTML = hominids;
+		UpdateSPS();
+	}
+}
+
+function UpdateSPS() {
+	scorePerSecond = tankmen + hominids * 5;
+	document.getElementById("scorepersecond").innerHTML = scorePerSecond;
+}
+setInterval(function() {
+score = score + tankmen;
+score = score + hominids * 5;
+document.getElementById("score").innerHTML = score;
+document.title = score + " Casualties - Newgrounds Clicker";
+}, 1000); // 1000ms = 1 second
+
+function addToScore(amount) {
+	score = score + amount;
+	document.getElementById("score").innerHTML = score;
+}
+	</script>
+</body>
+</html>
